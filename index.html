@@ -172,9 +172,11 @@ Football Club Random Generator
 
 <select id="tier">
 
-<option value="1">Tier 1</option>
+<option value="1">Club Tier 1</option>
 
-<option value="2">Tier 2</option>
+<option value="2">Club Tier 2</option>
+
+<option value="3">National Team</option>
 
 </select>
 
@@ -299,6 +301,38 @@ const tier2 = [
 "Brentford"
 ];
 
+const national = [
+"Argentina",
+"Brazil",
+"France",
+"Spain",
+"England",
+"Portugal",
+"Germany",
+"Italy",
+"Netherlands",
+"Belgium",
+"Croatia",
+"Uruguay",
+"Colombia",
+"Mexico",
+"Japan",
+"South Korea",
+"Morocco",
+"United States",
+"Denmark",
+"Switzerland",
+"Turkey",
+"Austria",
+"Nigeria",
+"Senegal",
+"Egypt",
+"Australia",
+"Poland",
+"Serbia",
+"Czech Republic",
+"Norway"
+];
 // ==========================
 // ELEMENT
 // ==========================
@@ -342,13 +376,19 @@ setTimeout(()=>{
 
 let clubs;
 
-if(tierSelect.value=="1"){
+switch(tierSelect.value){
 
+case "1":
 clubs = tier1;
+break;
 
-}else{
-
+case "2":
 clubs = tier2;
+break;
+
+case "3":
+clubs = national;
+break;
 
 }
 
