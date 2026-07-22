@@ -237,4 +237,162 @@ SPIN TEAM
 
 </div>
 
-<!-- PART 2 ditempel di bawah sini -->
+<script>
+
+// ==========================
+// DATA CLUB
+// ==========================
+
+const tier1 = [
+"Real Madrid",
+"Barcelona",
+"Manchester City",
+"Liverpool",
+"Arsenal",
+"Chelsea",
+"Manchester United",
+"Bayern Munich",
+"Borussia Dortmund",
+"Bayer Leverkusen",
+"RB Leipzig",
+"Inter Milan",
+"AC Milan",
+"Juventus",
+"Napoli",
+"Atletico Madrid",
+"Paris Saint-Germain",
+"Tottenham Hotspur",
+"Newcastle United",
+"Aston Villa"
+];
+
+const tier2 = [
+"Ajax",
+"PSV Eindhoven",
+"Feyenoord",
+"Benfica",
+"Sporting CP",
+"Porto",
+"AS Roma",
+"Lazio",
+"Atalanta",
+"Fiorentina",
+"Bologna",
+"Torino",
+"Real Sociedad",
+"Athletic Club",
+"Real Betis",
+"Villarreal",
+"Sevilla",
+"Olympique Marseille",
+"Olympique Lyon",
+"AS Monaco",
+"Lille",
+"Galatasaray",
+"Fenerbahce",
+"Besiktas",
+"Brighton & Hove Albion",
+"West Ham United",
+"Crystal Palace",
+"Nottingham Forest",
+"Fulham",
+"Brentford"
+];
+
+// ==========================
+// ELEMENT
+// ==========================
+
+const spinBtn = document.getElementById("spinBtn");
+const tierSelect = document.getElementById("tier");
+const playerSelect = document.getElementById("players");
+const result = document.getElementById("result");
+
+// ==========================
+// SHUFFLE (Fisher-Yates)
+// ==========================
+
+function shuffle(array){
+
+let arr = [...array];
+
+for(let i = arr.length - 1; i > 0; i--){
+
+const j = Math.floor(Math.random() * (i + 1));
+
+[arr[i], arr[j]] = [arr[j], arr[i]];
+
+}
+
+return arr;
+
+}
+
+// ==========================
+// SPIN
+// ==========================
+
+spinBtn.addEventListener("click",()=>{
+
+spinBtn.disabled = true;
+
+spinBtn.innerText = "GENERATING...";
+
+setTimeout(()=>{
+
+let clubs;
+
+if(tierSelect.value=="1"){
+
+clubs = tier1;
+
+}else{
+
+clubs = tier2;
+
+}
+
+const totalPlayers = parseInt(playerSelect.value);
+
+const randomClub = shuffle(clubs).slice(0,totalPlayers);
+
+let html="";
+
+for(let i=0;i<totalPlayers;i++){
+
+html+=`
+
+<div class="player-card">
+
+<div class="player-title">
+
+Player ${i+1}
+
+</div>
+
+<div class="club">
+
+${randomClub[i]}
+
+</div>
+
+</div>
+
+`;
+
+}
+
+result.innerHTML = html;
+
+spinBtn.innerText="SPIN TEAM";
+
+spinBtn.disabled=false;
+
+},600);
+
+});
+
+</script>
+
+</body>
+</html>
